@@ -259,9 +259,7 @@
           <button class="button button-primary full-width" type="submit">
             Send Enquiry
           </button>
-          <p class="form-note full-width" id="form-note" aria-live="polite">
-            Enquiries are sent directly from this form.
-          </p>
+          
         </form>
       </div>
     </section>
@@ -270,6 +268,30 @@
   <footer class="site-footer">
     <p>&copy; <span id="current-year"></span> Built with Knowledge</p>
   </footer>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+    <span class="back-to-top-ring" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m6 14 6-6 6 6"></path>
+      <path d="M12 8v9"></path>
+    </svg>
+    <span class="back-to-top-text">Top</span>
+  </button>
+
+  <div class="project-lightbox" id="project-lightbox" hidden>
+    <div class="project-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="project-lightbox-title">
+      <div class="project-lightbox-header">
+        <h3 id="project-lightbox-title">Project Preview</h3>
+        <button class="project-lightbox-close" id="project-lightbox-close" type="button" aria-label="Close preview">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="project-lightbox-media">
+        <img id="project-lightbox-image" src="" alt="">
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

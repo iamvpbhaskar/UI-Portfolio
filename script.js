@@ -65,6 +65,8 @@ const projects = [
       "Currently leading UI development for the Pingbix Voice AI CPaaS platform, building responsive product interfaces and frontend flows for AI-led communication workflows.",
     stack: ["UI Development", "CPaaS", "AI Workflows", "Responsive Frontend"],
     imageSrc: "assets/voice-ai-platform.png",
+    imageScale: 1.18,
+    imagePosition: "center top",
     link: "https://agent.pingbix.ai",
     ctaLabel: "View Live",
     external: true,
@@ -77,6 +79,8 @@ const projects = [
       "Built a production-ready Next.js and Strapi blog with native SEO, sitemap integration, filterable categories, and role-based content management for ongoing publishing.",
     stack: ["Next.js", "Strapi", "SEO", "Content Management"],
     imageSrc: "assets/pingbix-nextjs-blog.png",
+    imageScale: 1.08,
+    imagePosition: "center center",
     link: "https://blog.pingbix.com",
     ctaLabel: "View Live",
     external: true,
@@ -89,6 +93,8 @@ const projects = [
       "Led the end-to-end website UI and UX overhaul using HTML, CSS, JavaScript, Tailwind, Alpine.js, and D3.js, while also migrating Bootstrap 4 to 5 and deploying the revamp on AWS.",
     stack: ["HTML", "CSS", "JavaScript", "Alpine.js", "D3.js"],
     imageSrc: "assets/pingbix-website.png",
+    imageScale: 1.05,
+    imagePosition: "center top",
     link: "https://pingbix.com",
     ctaLabel: "View Live",
     external: true,
@@ -101,6 +107,8 @@ const projects = [
       "Designed and built the Pingbix Sandbox, a self-serve SMS and WhatsApp API testing platform with a secure Python Flask backend, JWT authentication, OTP verification, rate limiting, Redis, and a modern Tailwind-based frontend with real-time phone previews.",
     stack: ["Python", "Flask", "Tailwind", "Redis", "JWT"],
     imageSrc: "assets/sandbox=testing .png",
+    imageScale: 1.06,
+    imagePosition: "center top",
     link: "#",
     tone: "linear-gradient(135deg, rgba(97, 242, 194, 0.24), rgba(88, 173, 255, 0.28), rgba(255, 147, 109, 0.18))",
     status: "Boosted onboarding conversion by 80%+"
@@ -193,36 +201,52 @@ function renderProjects() {
   const projectsGrid = document.getElementById("projects-grid");
 
   projectsGrid.innerHTML = projects
-    .map(
-      (project) => `
-        <article class="project-card" data-reveal>
-          <div class="project-preview ${project.imageSrc ? "project-preview-has-image" : ""}" style="--card-bg: ${project.tone};">
-            ${
-              project.imageSrc
-                ? `<img class="project-image" src="${project.imageSrc}" alt="${project.title} preview">`
-                : `
-                  <div class="project-window">
-                    <div class="window-bar">
+    .map((project) => {
+      const imageStyle = [
+        project.imageScale ? `--image-scale:${project.imageScale}` : "",
+        project.imagePosition ? `--image-position:${project.imagePosition}` : ""
+      ]
+        .filter(Boolean)
+        .join(";");
+
+      const previewInner = `
+        <div class="project-preview ${project.imageSrc ? "project-preview-has-image" : ""}" style="--card-bg: ${project.tone};">
+          ${
+            project.imageSrc
+              ? `<img class="project-image" src="${project.imageSrc}" alt="${project.title} preview" ${imageStyle ? `style="${imageStyle}"` : ""}>`
+              : `
+                <div class="project-window">
+                  <div class="window-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="window-layout">
+                    <div class="window-sidebar">
                       <span></span>
                       <span></span>
                       <span></span>
                     </div>
-                    <div class="window-layout">
-                      <div class="window-sidebar">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div class="window-main">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
+                    <div class="window-main">
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
-                `
-            }
-          </div>
+                </div>
+              `
+          }
+          ${project.imageSrc ? '<span class="project-preview-badge">Tap to view</span>' : ""}
+        </div>
+      `;
+
+      return `
+        <article class="project-card" data-reveal>
+          ${
+            project.imageSrc
+              ? `<button class="project-preview-button" type="button" data-preview-src="${project.imageSrc}" data-preview-title="${project.title}" aria-label="View ${project.title} image">${previewInner}</button>`
+              : previewInner
+          }
           <h3>${project.title}</h3>
           <p>${project.description}</p>
           <div class="project-meta">
@@ -233,8 +257,8 @@ function renderProjects() {
             <a href="${project.link}" ${project.external ? 'target="_blank" rel="noreferrer"' : ""}>${project.ctaLabel || "Discuss Project"}</a>
           </div>
         </article>
-      `
-    )
+      `;
+    })
     .join("");
 }
 
@@ -330,6 +354,76 @@ function setupParallax() {
   });
 }
 
+function setupProjectPreviewLightbox() {
+  const previewButtons = document.querySelectorAll(".project-preview-button");
+  const lightbox = document.getElementById("project-lightbox");
+  const lightboxImage = document.getElementById("project-lightbox-image");
+  const lightboxTitle = document.getElementById("project-lightbox-title");
+  const closeButton = document.getElementById("project-lightbox-close");
+
+  if (!previewButtons.length || !lightbox || !lightboxImage || !lightboxTitle || !closeButton) {
+    return;
+  }
+
+  const openLightbox = (src, title) => {
+    lightboxImage.src = src;
+    lightboxImage.alt = `${title} preview`;
+    lightboxTitle.textContent = title;
+    lightbox.hidden = false;
+    document.body.classList.add("lightbox-open");
+  };
+
+  const closeLightbox = () => {
+    lightbox.hidden = true;
+    lightboxImage.src = "";
+    lightboxImage.alt = "";
+    document.body.classList.remove("lightbox-open");
+  };
+
+  previewButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      openLightbox(button.dataset.previewSrc, button.dataset.previewTitle || "Project preview");
+    });
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+}
+
+function setupBackToTop() {
+  const button = document.getElementById("back-to-top");
+
+  if (!button) {
+    return;
+  }
+
+  const toggleVisibility = () => {
+    const shouldShow = window.scrollY > Math.max(420, window.innerHeight * 0.55);
+    button.classList.toggle("is-visible", shouldShow);
+  };
+
+  button.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+  });
+
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  toggleVisibility();
+}
+
 function setupContactForm() {
   const form = document.getElementById("contact-form");
   if (!form) {
@@ -402,5 +496,7 @@ renderEducation();
 setupRevealObserver();
 setupNav();
 setupParallax();
+setupProjectPreviewLightbox();
+setupBackToTop();
 setupContactForm();
 setYear();
