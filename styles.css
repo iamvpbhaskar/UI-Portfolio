@@ -1427,7 +1427,7 @@ body.lightbox-open {
 
 .back-to-top {
   position: fixed;
-  right: max(1rem, calc((100vw - var(--content-width)) / 2 + 0.2rem));
+  right: 1.6rem;
   bottom: 1.4rem;
   z-index: 24;
   display: inline-flex;
