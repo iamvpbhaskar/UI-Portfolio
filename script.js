@@ -60,26 +60,16 @@ const experience = [
 
 const projects = [
   {
-    title: "Pingbix Sandbox",
+    title: "Voice AI CPaaS Platform",
     description:
-      "Designed and built the Pingbix Sandbox, a self-serve SMS and WhatsApp API testing platform with a secure Python Flask backend, JWT authentication, OTP verification, rate limiting, Redis, and a modern Tailwind-based frontend with real-time phone previews.",
-    stack: ["Python", "Flask", "Tailwind", "Redis", "JWT"],
-    imageSrc: "assets/sandbox=testing .png",
-    link: "#",
-    tone: "linear-gradient(135deg, rgba(97, 242, 194, 0.24), rgba(88, 173, 255, 0.28), rgba(255, 147, 109, 0.18))",
-    status: "Boosted onboarding conversion by 80%+"
-  },
-  {
-    title: "Pingbix Website",
-    description:
-      "Led the end-to-end website UI and UX overhaul using HTML, CSS, JavaScript, Tailwind, Alpine.js, and D3.js, while also migrating Bootstrap 4 to 5 and deploying the revamp on AWS.",
-    stack: ["HTML", "CSS", "JavaScript", "Alpine.js", "D3.js"],
-    imageSrc: "assets/pingbix-website.png",
-    link: "https://pingbix.com",
+      "Currently leading UI development for the Pingbix Voice AI CPaaS platform, building responsive product interfaces and frontend flows for AI-led communication workflows.",
+    stack: ["UI Development", "CPaaS", "AI Workflows", "Responsive Frontend"],
+    imageSrc: "assets/voice-ai-platform.png",
+    link: "https://agent.pingbix.ai",
     ctaLabel: "View Live",
     external: true,
-    tone: "linear-gradient(135deg, rgba(88, 173, 255, 0.28), rgba(14, 25, 36, 0.4), rgba(97, 242, 194, 0.16))",
-    status: "Bootstrap migration and AWS deployment"
+    tone: "linear-gradient(135deg, rgba(88, 173, 255, 0.24), rgba(97, 242, 194, 0.16), rgba(255, 147, 109, 0.24))",
+    status: "Live at agent.pingbix.ai"
   },
   {
     title: "Blog Platform - Pingbix",
@@ -94,16 +84,26 @@ const projects = [
     status: "Next.js and Strapi production blog"
   },
   {
-    title: "Voice AI CPaaS Platform",
+    title: "Pingbix Website",
     description:
-      "Currently leading UI development for the Pingbix Voice AI CPaaS platform, building responsive product interfaces and frontend flows for AI-led communication workflows.",
-    stack: ["UI Development", "CPaaS", "AI Workflows", "Responsive Frontend"],
-    imageSrc: "assets/voice-ai-platform.png",
-    link: "https://agent.pingbix.ai",
+      "Led the end-to-end website UI and UX overhaul using HTML, CSS, JavaScript, Tailwind, Alpine.js, and D3.js, while also migrating Bootstrap 4 to 5 and deploying the revamp on AWS.",
+    stack: ["HTML", "CSS", "JavaScript", "Alpine.js", "D3.js"],
+    imageSrc: "assets/pingbix-website.png",
+    link: "https://pingbix.com",
     ctaLabel: "View Live",
     external: true,
-    tone: "linear-gradient(135deg, rgba(88, 173, 255, 0.24), rgba(97, 242, 194, 0.16), rgba(255, 147, 109, 0.24))",
-    status: "Live at agent.pingbix.ai"
+    tone: "linear-gradient(135deg, rgba(88, 173, 255, 0.28), rgba(14, 25, 36, 0.4), rgba(97, 242, 194, 0.16))",
+    status: "Bootstrap migration and AWS deployment"
+  },
+  {
+    title: "Pingbix Sandbox",
+    description:
+      "Designed and built the Pingbix Sandbox, a self-serve SMS and WhatsApp API testing platform with a secure Python Flask backend, JWT authentication, OTP verification, rate limiting, Redis, and a modern Tailwind-based frontend with real-time phone previews.",
+    stack: ["Python", "Flask", "Tailwind", "Redis", "JWT"],
+    imageSrc: "assets/sandbox=testing .png",
+    link: "#",
+    tone: "linear-gradient(135deg, rgba(97, 242, 194, 0.24), rgba(88, 173, 255, 0.28), rgba(255, 147, 109, 0.18))",
+    status: "Boosted onboarding conversion by 80%+"
   }
 ];
 
